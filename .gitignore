@@ -1,0 +1,21 @@
+# --- Archivos de Utilidad Personal ---
+# Excluir el script de ejecución local
+ejecutor.py
+
+# --- Archivos del Sistema ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Extensiones de Python (por si ejecutor.py generó algo) ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Archivos de registro (Logs) ---
+*.log
+
+# --- Archivos de configuración de editores ---
+.vscode/
+.idea/
+*.swp
