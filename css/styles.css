@@ -102,7 +102,7 @@ nav a:hover {
    ========================================================================== */
 .parallax-container {
     height: 85vh; 
-    background-image: url('../images/imagenv1.jpg');
+    background-image: url('../images/imagenv1.jpeg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
