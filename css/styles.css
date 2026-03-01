@@ -2,14 +2,14 @@
    1. CONFIGURACIÓN DE MARCA (Noche Oaxaqueña)
    ========================================================================== */
 :root {
-    --blanco-calido: #F9F7F2;      /* Base */
-    --gris-piedra: #D1D1D1;       /* Bordes y secundarios */
-    --azul-indigo: #1A2A40;       /* Acento curatorial */
-    --madera-oscura: #2C1E16;     /* Footer y profundidad */
-    --negro-expositivo: #121212;  /* Contraste */
+    --blanco-calido: #F9F7F2;
+    --gris-piedra: #D1D1D1;
+    --azul-indigo: #1A2A40;
+    --madera-oscura: #2C1E16;
+    --negro-expositivo: #121212;
     
-    /* Fuente Principal Zen Loop */
-    --fuente-zen: "Zen Loop", cursive;
+    /* Nueva Fuente Principal */
+    --fuente-pt: "PT Serif", serif;
 }
 
 * {
@@ -21,9 +21,9 @@
 body {
     background-color: var(--blanco-calido);
     color: var(--negro-expositivo);
-    font-family: var(--fuente-zen);
-    font-size: 22px; 
-    line-height: 1.4;
+    font-family: var(--fuente-pt);
+    font-size: 18px; /* Reducido de 22px porque Serif es más legible */
+    line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -32,24 +32,23 @@ body {
 
 /* H1: Ultra ligero y color Índigo */
 h1 {
-    font-family: var(--fuente-zen);
-    font-size: 5rem;
+    font-family: var(--fuente-pt);
+    font-size: 4rem; /* Zen Loop era muy delgada, 4rem en PT Serif es imponente */
     color: var(--azul-indigo);
-    font-weight: 100;
+    font-weight: 700; /* Negrita para un look editorial fuerte */
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     text-align: center;
     margin: 0;
 }
 
-/* H2: Resaltado, Negro puro y con más cuerpo */
 h2 {
-    font-family: var(--fuente-zen);
-    font-size: 2.2rem;
+    font-family: var(--fuente-pt);
+    font-size: 1.4rem;
     color: #000000;
-    font-weight: 400; 
+    font-weight: 700; 
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     text-align: center;
     margin: 15px 0 0 0;
 }
@@ -74,11 +73,13 @@ header img {
 }
 
 nav a {
-    font-family: var(--fuente-zen);
+    font-family: var(--fuente-pt);
     text-decoration: none;
     color: var(--azul-indigo);
-    margin-left: 20px;
-    font-size: 1.4rem;
+    margin: 15px 0 !important;
+    margin-left: 20px !important;
+    font-size: 1.4rem; /* Ajustado para que no se vea tosco */
+    font-weight: 400;
     transition: 0.3s;
 }
 
@@ -102,7 +103,7 @@ nav a:hover {
    ========================================================================== */
 .parallax-container {
     height: 85vh; 
-    background-image: url('../images/imagenv1.jpeg');
+    background-image: url('../images/imagenv.jpeg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -123,12 +124,12 @@ nav a:hover {
    ========================================================================== */
 .intro-text, 
 section p {
-    max-width: 900px;
-    margin: 60px auto;
+    max-width: 800px;
+    margin: 40px auto;
     text-align: center;
     padding: 0 40px;
-    font-size: 1.8rem;
-    word-spacing: 4px;
+    font-size: 1.3rem; /* El texto se verá más claro y elegante ahora */
+    line-height: 1.8;
 }
 
 /* ==========================================================================
@@ -205,7 +206,7 @@ footer {
 footer a {
     color: var(--blanco-calido);
     text-decoration: none;
-    font-family: var(--fuente-zen);
+    font-family: var(--fuente-pt); /* <--- Cambiar aquí */
     margin: 0 10px;
 }
 
@@ -338,10 +339,10 @@ align-items: center;
     /* 5. Ajustes de Texto Editorial */
     .intro-text, 
     section p {
-        font-size: 1.4rem;
+        font-size: 1.2rem; /* Bajé un poco de 1.4 a 1.2 para que no sea gigante */
         padding: 0 10px;
         margin: 30px auto;
-        line-height: 1.3;
+        line-height: 1.5; /* <--- Más aire para las serifas */
     }
 
     footer {
