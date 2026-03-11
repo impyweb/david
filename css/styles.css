@@ -8,7 +8,7 @@
     --madera-oscura: #2C1E16;
     --negro-expositivo: #121212;
     
-    /* Nueva Fuente Principal */
+    /* Fuente Principal Unificada */
     --fuente-pt: "PT Serif", serif;
 }
 
@@ -22,35 +22,74 @@ body {
     background-color: var(--blanco-calido);
     color: var(--negro-expositivo);
     font-family: var(--fuente-pt);
-    font-size: 18px; /* Reducido de 22px porque Serif es más legible */
+    font-size: 18px; 
     line-height: 1.6;
+    /* Evita desplazamientos horizontales extraños */
+    overflow-x: hidden;
 }
 
 /* ==========================================================================
-   2. TÍTULOS (ESTILOS INDEPENDIENTES)
+   2. TÍTULOS Y TEXTO (UNIFICADOS PARA TODO EL SITIO)
    ========================================================================== */
 
-/* H1: Ultra ligero y color Índigo */
+/* H1: Título Principal (OAXARAW / GALERÍA) */
 h1 {
     font-family: var(--fuente-pt);
-    font-size: 4rem; /* Zen Loop era muy delgada, 4rem en PT Serif es imponente */
+    font-size: 4rem; 
     color: var(--azul-indigo);
-    font-weight: 700; /* Negrita para un look editorial fuerte */
+    font-weight: 700; 
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-align: center;
-    margin: 0;
+    margin: 0 auto;
+    padding: 0 10px;
 }
 
+/* H2: Subtítulos Editoriales */
 h2 {
     font-family: var(--fuente-pt);
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     color: #000000;
     font-weight: 700; 
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     text-align: center;
-    margin: 15px 0 0 0;
+    margin: 20px auto 0 auto;
+    max-width: 900px; 
+    line-height: 1.5;
+    padding: 0 20px;
+}
+
+/* P: Regla Maestra para todos los párrafos de texto */
+/* Se aplica a párrafos sueltos y a los contenidos en secciones divididas */
+section p, 
+.intro-text p, 
+.section-split p, 
+.section-thesis p,
+.section-header p {
+    font-family: var(--fuente-pt);
+    font-size: 1.1rem; 
+    line-height: 1.8;  
+    color: var(--madera-oscura);
+    max-width: 800px;  
+    margin: 30px auto; 
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Ajuste de espaciadores de línea (hr) */
+.spacer-lg {
+    border: none;
+    height: 60px;
+}
+
+/* Eliminación de estilos antiguos para evitar conflictos tipográficos */
+.intro-text, 
+.texto-editorial,
+.section-header {
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 /* ==========================================================================
@@ -122,30 +161,37 @@ nav a:hover {
 /* ==========================================================================
    5. FORMATO DE TEXTO EDITORIAL (Cuerpo de página)
    ========================================================================== */
+
+/* Usamos una clase específica para los párrafos de texto corrido */
 .intro-text, 
-section p {
+.texto-editorial {
     max-width: 800px;
     margin: 40px auto;
     text-align: center;
     padding: 0 40px;
-    font-size: 1.3rem; /* El texto se verá más claro y elegante ahora */
-    line-height: 1.8;
+    font-size: 1.08rem;
+    line-height: 1.7;
 }
 
 /* ==========================================================================
-   6. SECCIONES ESPECIALES (Split y Thesis)
+   6. SECCIONES ESPECIALES (Módulo Editorial Reutilizable)
    ========================================================================== */
 
-/* Imagen izquierda / texto derecha */
+/* --- Split Section (Imagen izquierda / texto derecha) --- */
 .section-split {
     display: flex;
     gap: 50px;
-    align-items: center;
+    align-items: center; /* Esto centra verticalmente el texto con la foto */
     padding: 80px 10%;
 }
 
-.section-split div {
-    flex: 1;
+.section-split div { flex: 1; }
+
+/* Reset de párrafos solo para Split para evitar el empuje */
+.section-split p {
+    margin: 0; 
+    text-align: center;
+    line-height: 1.8;
 }
 
 .section-split img {
@@ -153,22 +199,93 @@ section p {
     border-left: 3px solid var(--azul-indigo);
 }
 
-/* Imagen + texto horizontal tipo tesis */
+/* --- Thesis Section (Tu módulo perfecto) --- */
 .section-thesis {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    padding: 80px 10%;
-    background-color: rgba(26, 42, 64, 0.03); 
+    gap: 60px;
+    padding: 60px 10%;
+    align-items: center; 
+    background-color: rgba(26, 42, 64, 0.03);
+}
+
+.section-thesis p {
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto; /* Importante: 0 para que no se desfase */
+    line-height: 1.8;
 }
 
 .section-thesis img {
+    display: block;
     width: 100%;
-    margin-bottom: 20px;
+    height: auto;
 }
 
 /* ==========================================================================
-   7. SEPARADORES Y ESPACIADORES
+   7. CARRUSEL INFINITO (Imágenes Verticales)
+   ========================================================================== */
+
+.section-carousel {
+    width: 100%;
+    overflow: hidden; /* Esconde lo que sale de la pantalla */
+    padding: 60px 0;
+    background-color: var(--blanco-calido);
+}
+
+.carousel-track {
+    display: flex;
+    width: calc(250px * 8); /* Ancho de imagen * total de imágenes (incluyendo duplicados) */
+    animation: scroll-carousel 40s linear infinite;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused; /* Se detiene al pasar el mouse */
+}
+
+.carousel-item {
+    width: 250px; /* Ajusta este ancho según prefieras */
+    padding: 0 15px;
+    flex-shrink: 0;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 400px; /* Altura fija para mantener uniformidad vertical */
+    object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
+    border: 1px solid rgba(26, 42, 64, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.carousel-item img:hover {
+    transform: scale(1.02); /* Efecto sutil de zoom */
+}
+
+/* Animación del movimiento */
+@keyframes scroll-carousel {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-250px * 4)); /* Se desplaza la mitad exacta del track */
+    }
+}
+
+/* Ajuste para móviles en Sección 9 */
+@media (max-width: 768px) {
+    .carousel-item {
+        width: 180px;
+    }
+    .carousel-item img {
+        height: 300px;
+    }
+    @keyframes scroll-carousel {
+        100% { transform: translateX(calc(-180px * 4)); }
+    }
+}
+
+/* ==========================================================================
+   8. SEPARADORES Y ESPACIADORES
    ========================================================================== */
 
 .spacer-lg {
@@ -194,7 +311,7 @@ section p {
 }
 
 /* ==========================================================================
-   8. FOOTER
+   9. FOOTER
    ========================================================================== */
 footer {
     background-color: var(--madera-oscura);
@@ -232,30 +349,118 @@ align-items: center;
 }
 
 /* ==========================================================================
-   9. RESPONSIVE DESIGN (Celulares y Tablets)
+   10. CUADRÍCULA DE GALERÍA (Grid Reutilizable)
+   ========================================================================== */
+
+.subtitle-editorial {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--azul-indigo);
+    margin-bottom: 20px;
+}
+
+.grid-gallery {
+    padding: 60px 10%;
+    background-color: var(--blanco-calido);
+}
+
+.grid-container {
+    display: grid;
+    /* Crea 3 columnas iguales */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* Espacio entre fotos */
+}
+
+.grid-item {
+    overflow: hidden; /* Corta el zoom de la imagen para que no se salga del cuadro */
+    aspect-ratio: 3 / 2; /* Mantiene todas las fotos en proporción horizontal uniforme */
+    border: 1px solid rgba(26, 42, 64, 0.05);
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen llene el cuadro sin deformarse */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Efecto Hover: Zoom elegante */
+.grid-item:hover img {
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   11. LIGHTBOX (Visor de imágenes expandido)
+   ========================================================================== */
+
+.lightbox {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 42, 64, 0.95); /* Color azul índigo muy oscuro con transparencia */
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 85%;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border: 2px solid var(--blanco-calido);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-content {
+    transform: scale(1);
+}
+
+/* El botón de cerrar (X) */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--blanco-calido);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   12. RESPONSIVE DESIGN (Celulares y Tablets)
    ========================================================================== */
 
 @media (max-width: 768px) {
     /* 1. Ajustes de Tipografía y Títulos */
     h1 { 
-        font-size: 2.8rem; /* Un poco más pequeño para evitar desbordes */
+        font-size: 2.8rem; 
         letter-spacing: 2px;
     }
     
     h2 { 
         font-size: 1.4rem; 
         padding: 0 15px;
-        line-height: 1.2;
+        line-height: 1.3;
+        margin-bottom: 20px;
     }
 
     /* 2. Header y Menú Hamburguesa */
     header {
-        position: relative; /* Necesario para que el menú se posicione bien */
+        position: relative; 
         padding: 0.8rem 5%;
     }
 
     .menu-toggle {
-        display: flex; /* Aparece en móvil */
+        display: flex; 
         flex-direction: column;
         cursor: pointer;
         gap: 5px;
@@ -269,12 +474,12 @@ align-items: center;
         transition: 0.3s;
     }
 
-    /* 3. Navegación Móvil (El panel que cae) */
+    /* 3. Navegación Móvil */
     nav#nav-menu {
-        display: none; /* Oculto por defecto */
+        display: none; 
         flex-direction: column;
         position: absolute;
-        top: 100%; /* Justo debajo del header */
+        top: 100%; 
         left: 0;
         width: 100%;
         background-color: var(--blanco-calido);
@@ -284,7 +489,6 @@ align-items: center;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
 
-    /* Clase que activa el JS */
     nav#nav-menu.active {
         display: flex !important;
     }
@@ -297,56 +501,73 @@ align-items: center;
         text-align: center;
     }
 
-    /* Ocultar el icono de la casa en móvil si estorba el diseño vertical */
-    nav a img[alt="Inicio"] {
-        height: 25px;
-        margin-bottom: 10px;
-    }
-
-    /* 4. Contenedores y Secciones */
-    .parallax-container {
-        height: 45vh; /* Altura más cómoda para móviles */
-        max-width: 92%; 
-        margin: 20px auto;
-        background-attachment: scroll; /* Mejora rendimiento en móviles */
-    }
-
+    /* 4. Secciones Editoriales (Home) */
     .section-split, 
     .section-thesis {
         display: flex;
-        flex-direction: column; /* Apila los elementos */
+        flex-direction: column; 
         padding: 40px 8%;
         gap: 30px;
     }
 
     .section-thesis {
-        grid-template-columns: 1fr; /* Fuerza una sola columna */
-    }
-
-    .section-split div, 
-    .section-thesis div {
-        width: 100%;
+        flex-direction: column-reverse; 
     }
 
     .section-split img, 
     .section-thesis img {
         width: 100%;
-        margin-bottom: 15px;
         border-left: none;
-        border-bottom: 3px solid var(--azul-indigo); /* Acento abajo en vez de al lado */
+        border-bottom: 3px solid var(--azul-indigo); 
     }
 
-    /* 5. Ajustes de Texto Editorial */
-    .intro-text, 
-    section p {
-        font-size: 1.2rem; /* Bajé un poco de 1.4 a 1.2 para que no sea gigante */
+    /* 5. Carrusel Infinito (Home) */
+    .carousel-item {
+        width: 180px; 
+        padding: 0 8px;
+    }
+
+    .carousel-item img {
+        height: 300px; 
+    }
+
+    @keyframes scroll-carousel {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-180px * 4)); }
+    }
+
+    /* 6. Cuadrícula de Galería (Página Galería) */
+    .grid-container {
+        grid-template-columns: 1fr; /* Una columna para maximizar impacto */
+        gap: 15px;
+        padding: 0 5%;
+    }
+
+    /* 7. Visor Lightbox (Para que invada la pantalla en móvil) */
+    .lightbox-content {
+        max-width: 95%; /* Ocupa casi todo el ancho */
+        max-height: 80vh; /* Ocupa la mayor parte del alto */
+        border: 1px solid var(--blanco-calido);
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 20px;
+        font-size: 35px;
+    }
+
+    /* 8. Textos Generales */
+    section p,
+    .intro-text {
+        font-size: 1.1rem; 
         padding: 0 10px;
-        margin: 30px auto;
-        line-height: 1.5; /* <--- Más aire para las serifas */
+        margin: 20px auto;
+        line-height: 1.6; 
+        max-width: 100%;
     }
 
+    /* 9. Footer */
     footer {
         padding: 40px 10%;
     }
-
 }
