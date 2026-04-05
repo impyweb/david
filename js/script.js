@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.querySelector('.lightbox-content');
     const gridImages = document.querySelectorAll('.grid-item img');
-    const closeBtn = document.querySelector('.lightbox-close');
 
     // Solo ejecutamos si el lightbox existe en el HTML actual
     if (lightbox && lightboxImg) {

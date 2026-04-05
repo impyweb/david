@@ -221,71 +221,8 @@ nav a:hover {
     width: 100%;
     height: auto;
 }
-
 /* ==========================================================================
-   7. CARRUSEL INFINITO (Imágenes Verticales)
-   ========================================================================== */
-
-.section-carousel {
-    width: 100%;
-    overflow: hidden; /* Esconde lo que sale de la pantalla */
-    padding: 60px 0;
-    background-color: var(--blanco-calido);
-}
-
-.carousel-track {
-    display: flex;
-    width: calc(250px * 8); /* Ancho de imagen * total de imágenes (incluyendo duplicados) */
-    animation: scroll-carousel 40s linear infinite;
-}
-
-.carousel-track:hover {
-    animation-play-state: paused; /* Se detiene al pasar el mouse */
-}
-
-.carousel-item {
-    width: 250px; /* Ajusta este ancho según prefieras */
-    padding: 0 15px;
-    flex-shrink: 0;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 400px; /* Altura fija para mantener uniformidad vertical */
-    object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
-    border: 1px solid rgba(26, 42, 64, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.carousel-item img:hover {
-    transform: scale(1.02); /* Efecto sutil de zoom */
-}
-
-/* Animación del movimiento */
-@keyframes scroll-carousel {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(calc(-250px * 4)); /* Se desplaza la mitad exacta del track */
-    }
-}
-
-/* Ajuste para móviles en Sección 9 */
-@media (max-width: 768px) {
-    .carousel-item {
-        width: 180px;
-    }
-    .carousel-item img {
-        height: 300px;
-    }
-    @keyframes scroll-carousel {
-        100% { transform: translateX(calc(-180px * 4)); }
-    }
-}
-
-/* ==========================================================================
-   8. SEPARADORES Y ESPACIADORES
+   7. SEPARADORES Y ESPACIADORES
    ========================================================================== */
 
 .spacer-lg {
@@ -311,7 +248,7 @@ nav a:hover {
 }
 
 /* ==========================================================================
-   9. FOOTER
+   8. FOOTER
    ========================================================================== */
 footer {
     background-color: var(--madera-oscura);
@@ -323,33 +260,33 @@ footer {
 footer a {
     color: var(--blanco-calido);
     text-decoration: none;
-    font-family: var(--fuente-pt); /* <--- Cambiar aquí */
+    font-family: var(--fuente-pt);
     margin: 0 10px;
 }
 
 footer img {
-height: 30px;            /* Tamaño un poco más visible */
-width: auto;
-margin: 0 15px;
-transition: 0.3s;
-/* Eliminamos el brillo 0 y usamos solo inversión si son negros */
-filter: invert(1);       
-opacity: 0.8;            /* Para que no brillen tanto y se vean elegantes */
+    height: 30px;
+    width: auto;
+    margin: 0 15px;
+    transition: 0.3s;
+    filter: invert(1);       
+    opacity: 0.8;
 }
 
 footer img:hover {
-    opacity: 1;              /* Brillo total al pasar el mouse */
-    transform: scale(1.1);   /* Pequeño efecto de crecimiento */
+    opacity: 1;
+    transform: scale(1.1);
 }
+
 footer div {
-margin-bottom: 20px;     /* Separa los iconos de los enlaces legales */
-display: flex;
-justify-content: center;
-align-items: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ==========================================================================
-   10. CUADRÍCULA DE GALERÍA (Grid Reutilizable)
+   9. CUADRÍCULA DE GALERÍA (Grid Reutilizable)
    ========================================================================== */
 
 .subtitle-editorial {
@@ -366,42 +303,58 @@ align-items: center;
 
 .grid-container {
     display: grid;
-    /* Crea 3 columnas iguales */
     grid-template-columns: repeat(3, 1fr); 
-    gap: 20px; /* Espacio entre fotos */
+    gap: 20px;
 }
 
 .grid-item {
-    overflow: hidden; /* Corta el zoom de la imagen para que no se salga del cuadro */
-    aspect-ratio: 3 / 2; /* Mantiene todas las fotos en proporción horizontal uniforme */
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
     border: 1px solid rgba(26, 42, 64, 0.05);
 }
 
 .grid-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que la imagen llene el cuadro sin deformarse */
+    object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Efecto Hover: Zoom elegante */
 .grid-item:hover img {
     transform: scale(1.1);
 }
 
 /* ==========================================================================
-   11. LIGHTBOX (Visor de imágenes expandido)
+   9.1 CUADRÍCULA VERTICAL (Variante para fotos de retrato)
+   ========================================================================== */
+
+/* Esta clase modifica el comportamiento de .grid-item solo dentro de .grid-vertical */
+.grid-vertical .grid-item {
+    aspect-ratio: 2 / 3; /* Proporción vertical (más alta que ancha) */
+}
+
+/* En móviles, mantenemos la estructura pero quizá quieras ajustar el padding */
+@media (max-width: 768px) {
+    .grid-vertical .grid-container {
+        grid-template-columns: 1fr; /* Una foto por fila en celular para que luzcan */
+        gap: 25px;
+    }
+}
+
+
+/* ==========================================================================
+   10. LIGHTBOX (Visor de imágenes expandido)
    ========================================================================== */
 
 .lightbox {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
     z-index: 2000;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(26, 42, 64, 0.95); /* Color azul índigo muy oscuro con transparencia */
+    background-color: rgba(26, 42, 64, 0.95);
     justify-content: center;
     align-items: center;
     cursor: zoom-out;
@@ -424,7 +377,6 @@ align-items: center;
     transform: scale(1);
 }
 
-/* El botón de cerrar (X) */
 .lightbox-close {
     position: absolute;
     top: 20px;
@@ -434,16 +386,35 @@ align-items: center;
     font-weight: bold;
     cursor: pointer;
 }
-
 /* ==========================================================================
-   12. RESPONSIVE DESIGN (Celulares y Tablets)
+   11. RESPONSIVE DESIGN (Tabletas y Celulares)
    ========================================================================== */
 
+/* --- DISPOSITIVOS MEDIANOS (Tabletas - hasta 1024px) --- */
+@media (max-width: 1024px) {
+    .grid-container {
+        /* En tabletas, pasamos de 3 columnas a 2 para que las fotos no se vean tan pequeñas */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 20px;
+    }
+
+    .grid-gallery {
+        padding: 40px 5%;
+    }
+
+    h1 {
+        font-size: 3.2rem;
+    }
+}
+
+/* --- DISPOSITIVOS MÓVILES (Celulares - hasta 768px) --- */
 @media (max-width: 768px) {
+    
     /* 1. Ajustes de Tipografía y Títulos */
     h1 { 
         font-size: 2.8rem; 
         letter-spacing: 2px;
+        margin-bottom: 10px;
     }
     
     h2 { 
@@ -490,27 +461,35 @@ align-items: center;
     }
 
     nav#nav-menu.active {
+        /* El JavaScript activa esta clase para mostrar el menú */
         display: flex !important;
     }
 
     nav a {
         font-size: 1.8rem;
-        margin: 15px 0 !important;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 0;
+        margin-right: 0;
         display: block;
         width: 100%;
         text-align: center;
     }
 
-    /* 4. Secciones Editoriales (Home) */
+    /* 4. Secciones Editoriales (Semblanza / Inicio) */
     .section-split, 
     .section-thesis {
         display: flex;
         flex-direction: column; 
-        padding: 40px 8%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-left: 8%;
+        padding-right: 8%;
         gap: 30px;
     }
 
     .section-thesis {
+        /* Invierte el orden para que la imagen quede arriba del texto en móvil */
         flex-direction: column-reverse; 
     }
 
@@ -521,33 +500,36 @@ align-items: center;
         border-bottom: 3px solid var(--azul-indigo); 
     }
 
-    /* 5. Carrusel Infinito (Home) */
-    .carousel-item {
-        width: 180px; 
-        padding: 0 8px;
-    }
-
-    .carousel-item img {
-        height: 300px; 
-    }
-
-    @keyframes scroll-carousel {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-180px * 4)); }
-    }
-
-    /* 6. Cuadrícula de Galería (Página Galería) */
+    /* 5. Cuadrículas de Galería (Horizontal y Vertical) */
     .grid-container {
-        grid-template-columns: 1fr; /* Una columna para maximizar impacto */
-        gap: 15px;
-        padding: 0 5%;
+        /* Una sola columna para que las fotos luzcan en toda su anchura */
+        grid-template-columns: 1fr; 
+        gap: 20px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
-    /* 7. Visor Lightbox (Para que invada la pantalla en móvil) */
+    .grid-gallery {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    /* Ajuste especial para que las fotos verticales no sean infinitas en el scroll */
+    .grid-vertical .grid-item {
+        aspect-ratio: 4 / 5; 
+        max-height: 550px;
+    }
+
+    /* 6. Visor Lightbox (Optimización para pantallas pequeñas) */
     .lightbox-content {
-        max-width: 95%; /* Ocupa casi todo el ancho */
-        max-height: 80vh; /* Ocupa la mayor parte del alto */
-        border: 1px solid var(--blanco-calido);
+        max-width: 95%; 
+        max-height: 80vh; 
+        border-width: 1px;
+        border-style: solid;
+        border-color: var(--blanco-calido);
+        object-fit: contain; /* Asegura que la foto quepa completa sin recortes */
     }
 
     .lightbox-close {
@@ -556,18 +538,25 @@ align-items: center;
         font-size: 35px;
     }
 
-    /* 8. Textos Generales */
+    /* 7. Textos Generales y Párrafos */
     section p,
     .intro-text {
         font-size: 1.1rem; 
-        padding: 0 10px;
-        margin: 20px auto;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
         line-height: 1.6; 
         max-width: 100%;
     }
 
-    /* 9. Footer */
+    /* 8. Footer */
     footer {
-        padding: 40px 10%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-left: 10%;
+        padding-right: 10%;
     }
 }
