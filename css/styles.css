@@ -48,7 +48,7 @@ h1 {
 /* H2: Subtítulos Editoriales */
 h2 {
     font-family: var(--fuente-pt);
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     color: #000000;
     font-weight: 700; 
     text-transform: uppercase;
@@ -386,8 +386,213 @@ footer div {
     font-weight: bold;
     cursor: pointer;
 }
+
 /* ==========================================================================
-   11. RESPONSIVE DESIGN (Tabletas y Celulares)
+   11. CONTACTO
+   ========================================================================== */
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 10%;
+    gap: 50px;
+    background-color: var(--blanco-calido);
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h3, .contact-social h3 {
+    font-family: var(--fuente-pt);
+    color: var(--azul-indigo);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.contact-method {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.contact-method a {
+    display: block;
+    color: var(--azul-indigo);
+    text-decoration: none;
+    margin-top: 5px;
+    transition: 0.3s;
+}
+
+.contact-method a:hover {
+    text-decoration: underline;
+}
+
+.contact-social {
+    flex: 1;
+    max-width: 500px;
+}
+
+.instagram-embed-container {
+    border: 1px solid var(--gris-piedra);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Responsive Contacto */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        padding: 40px 8%;
+    }
+    
+    .contact-social {
+        max-width: 100%;
+    }
+}
+
+/* ==========================================================================
+   12. PRESENTACIÓN DINÁMICA (Versión Estilizada)
+   ========================================================================== */
+
+.section-slides {
+    padding: 40px 10%;
+    background-color: var(--blanco-calido);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra la presentación */
+}
+
+.slides-container {
+    position: relative;
+    width: 100%;
+    /* REDUCCIÓN DE TAMAÑO: Aquí controlas qué tan grande se ve */
+    max-width: 750px; 
+    
+    /* Mantiene la proporción 16:9 */
+    padding-top: 42.18%; /* Ajustado para que no sea tan alta (proporción 16:9 de 750px) */
+    height: 0;
+    
+    overflow: hidden;
+    border-radius: 4px; /* Bordes suavizados */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Sombra más sutil */
+    border: 1px solid var(--gris-piedra);
+}
+
+.slides-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Ajuste para móviles: que ocupe más espacio para que sea legible */
+@media (max-width: 768px) {
+    .section-slides {
+        padding: 20px 5%;
+    }
+    .slides-container {
+        padding-top: 56.25%; /* Vuelve a 16:9 completo en móvil para legibilidad */
+    }
+}
+
+/* ==========================================================================
+   13. SERVICIOS
+   ========================================================================== */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 60px 10%;
+    background-color: var(--blanco-calido);
+}
+
+.service-card {
+    background-color: white;
+    padding: 40px 30px;
+    text-align: center;
+    border: 1px solid rgba(26, 42, 64, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.service-card h3 {
+    font-family: var(--fuente-pt);
+    color: var(--azul-indigo);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.service-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.section-cta {
+    text-align: center;
+    padding: 80px 10%;
+    background-color: var(--madera-oscura);
+    color: var(--blanco-calido);
+}
+
+.section-cta p {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    font-family: var(--fuente-pt);
+    font-style: italic;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--blanco-calido);
+    color: var(--azul-indigo);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 2px;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+    background-color: var(--azul-indigo);
+    color: var(--blanco-calido);
+}
+
+/* Responsive Servicios */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        padding: 40px 8%;
+    }
+    
+    .section-cta p {
+        font-size: 1.2rem;
+    }
+}
+
+/* ==========================================================================
+   14. RESPONSIVE DESIGN (Tabletas y Celulares)
    ========================================================================== */
 
 /* --- DISPOSITIVOS MEDIANOS (Tabletas - hasta 1024px) --- */
