@@ -590,7 +590,6 @@ footer div {
         font-size: 1.2rem;
     }
 }
-
 /* ==========================================================================
    14. RESPONSIVE DESIGN (Tabletas y Celulares)
    ========================================================================== */
@@ -598,7 +597,6 @@ footer div {
 /* --- DISPOSITIVOS MEDIANOS (Tabletas - hasta 1024px) --- */
 @media (max-width: 1024px) {
     .grid-container {
-        /* En tabletas, pasamos de 3 columnas a 2 para que las fotos no se vean tan pequeñas */
         grid-template-columns: repeat(2, 1fr); 
         gap: 20px;
     }
@@ -666,35 +664,27 @@ footer div {
     }
 
     nav#nav-menu.active {
-        /* El JavaScript activa esta clase para mostrar el menú */
         display: flex !important;
     }
 
     nav a {
         font-size: 1.8rem;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        margin-left: 0;
-        margin-right: 0;
+        margin: 15px 0;
         display: block;
         width: 100%;
         text-align: center;
     }
 
-    /* 4. Secciones Editoriales (Semblanza / Inicio) */
+    /* 4. Secciones Editoriales */
     .section-split, 
     .section-thesis {
         display: flex;
         flex-direction: column; 
-        padding-top: 40px;
-        padding-bottom: 40px;
-        padding-left: 8%;
-        padding-right: 8%;
+        padding: 40px 8%;
         gap: 30px;
     }
 
     .section-thesis {
-        /* Invierte el orden para que la imagen quede arriba del texto en móvil */
         flex-direction: column-reverse; 
     }
 
@@ -705,36 +695,28 @@ footer div {
         border-bottom: 3px solid var(--azul-indigo); 
     }
 
-    /* 5. Cuadrículas de Galería (Horizontal y Vertical) */
+    /* 5. Cuadrículas */
     .grid-container {
-        /* Una sola columna para que las fotos luzcan en toda su anchura */
         grid-template-columns: 1fr; 
         gap: 20px;
-        padding-left: 0;
-        padding-right: 0;
+        padding: 0;
     }
 
     .grid-gallery {
-        padding-top: 30px;
-        padding-bottom: 30px;
-        padding-left: 8%;
-        padding-right: 8%;
+        padding: 30px 8%;
     }
 
-    /* Ajuste especial para que las fotos verticales no sean infinitas en el scroll */
     .grid-vertical .grid-item {
         aspect-ratio: 4 / 5; 
         max-height: 550px;
     }
 
-    /* 6. Visor Lightbox (Optimización para pantallas pequeñas) */
+    /* 6. Lightbox */
     .lightbox-content {
         max-width: 95%; 
         max-height: 80vh; 
-        border-width: 1px;
-        border-style: solid;
-        border-color: var(--blanco-calido);
-        object-fit: contain; /* Asegura que la foto quepa completa sin recortes */
+        border: 1px solid var(--blanco-calido);
+        object-fit: contain;
     }
 
     .lightbox-close {
@@ -743,25 +725,30 @@ footer div {
         font-size: 35px;
     }
 
-    /* 7. Textos Generales y Párrafos */
+    /* 7. Texto */
     section p,
     .intro-text {
         font-size: 1.1rem; 
-        padding-left: 10px;
-        padding-right: 10px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        margin-left: auto;
-        margin-right: auto;
+        padding: 0 10px;
+        margin: 20px auto;
         line-height: 1.6; 
         max-width: 100%;
     }
 
     /* 8. Footer */
     footer {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        padding-left: 10%;
-        padding-right: 10%;
+        padding: 40px 10%;
+    }
+
+    /* 🔧 FIX PARALLAX EN MÓVIL */
+    .parallax-container {
+        background-image: none;
+        height: auto;
+    }
+
+    .parallax-container img {
+        display: block;
+        width: 100%;
+        height: auto;
     }
 }
